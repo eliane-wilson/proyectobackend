@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "code": 1,
+    "title": "Camiseta",
+    "description": "Camiseta de algodón",
+    "price": 25.5,
+    "stock": 10,
+    "status": "arrived",
+    "category": "summer",
+    "thumbnails": null
+  },
+  {
+    "id": 2,
+    "code": 2,
+    "title": "Pantalón",
+    "description": "Pantalón de mezclilla",
+    "price": 40.0,
+    "stock": 5,
+    "status": "arrived",
+    "category": "summer",
+    "thumbnails": null
+  },
+  {
+    "id": 3,
+    "code": 3,
+    "title": "Remera",
+    "description": "Remera de algodón",
+    "price": 29.5,
+    "stock": 11,
+    "status": "arrived",
+    "category": "summer",
+    "thumbnails": null
+  },
+  {
+    "id": 4,
+    "code": 4,
+    "title": "Pantalón Corto",
+    "description": "Pantalón Corto de lino",
+    "price": 34.0,
+    "stock": 6,
+    "status": "shipping",
+    "category": "summer",
+    "thumbnails": null
+  },
+  {
+    "id": 5,
+    "code": 5,
+    "title": "Camisa hombre",
+    "description": "Camisa de algodón",
+    "price": 25.5,
+    "stock": 10,
+    "status": "arrived",
+    "category": "summer",
+    "thumbnails": null
+  },
+  {
+    "id": 6,
+    "code": 6,
+    "title": "Short",
+    "description": "Short corto",
+    "price": 20.0,
+    "stock": 5,
+    "status": "shipping",
+    "category": "summer",
+    "thumbnails": null
+  }
+]
