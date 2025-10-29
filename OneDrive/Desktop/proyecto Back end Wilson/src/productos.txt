@@ -1,68 +1,68 @@
 [
   {
     "id": 1,
-    "code": 1,
+    "code": "AB1",
     "title": "Camiseta",
     "description": "Camiseta de algodón",
     "price": 25.5,
     "stock": 10,
-    "status": "arrived",
+    "status": true,
     "category": "summer",
-    "thumbnails": null
+    "thumbnails": ["https://dbnfutbol.com.ar/wp-content/uploads/2023/05/2155.jpg"]
   },
   {
     "id": 2,
-    "code": 2,
+    "code": "AC3",
     "title": "Pantalón",
     "description": "Pantalón de mezclilla",
     "price": 40.0,
     "stock": 5,
-    "status": "arrived",
+    "status": false,
     "category": "summer",
-    "thumbnails": null
+    "thumbnails": ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNUI1Y9i1wWWmeYKg6NZfpJ07mAoMUFyRkaw&s"]
   },
   {
     "id": 3,
-    "code": 3,
+    "code": "AV4",
     "title": "Remera",
     "description": "Remera de algodón",
     "price": 29.5,
     "stock": 11,
-    "status": "arrived",
+    "status": true,
     "category": "summer",
-    "thumbnails": null
+    "thumbnails": ["https://sublitextil.com.ar/wp-content/uploads/2022/01/Remera-Negra-Algodon-Para-Personalizar-1.png"]
   },
   {
     "id": 4,
-    "code": 4,
+    "code": "HJ5"
     "title": "Pantalón Corto",
     "description": "Pantalón Corto de lino",
     "price": 34.0,
     "stock": 6,
-    "status": "shipping",
+    "status": false,
     "category": "summer",
-    "thumbnails": null
+    "thumbnails": ["https://img.kwcdn.com/product/Fancyalgo/VirtualModelMatting/070642f4e6b058db5a774300e18d5841.jpg?imageMogr2/auto-orient%7CimageView2/2/w/800/q/70/format/webp"]
   },
   {
     "id": 5,
-    "code": 5,
+    "code": "BC2"
     "title": "Camisa hombre",
     "description": "Camisa de algodón",
     "price": 25.5,
     "stock": 10,
-    "status": "arrived",
+    "status": true,
     "category": "summer",
-    "thumbnails": null
+    "thumbnails": ["https://acdn-us.mitiendanube.com/stores/003/795/340/products/orso-29-8_236341-9ac4c533e30252baef17252970645449-1024-1024.webp"] 
   },
   {
     "id": 6,
-    "code": 6,
+    "code": "GTD"
     "title": "Short",
     "description": "Short corto",
     "price": 20.0,
     "stock": 5,
-    "status": "shipping",
+    "status": true,
     "category": "summer",
-    "thumbnails": null
+    "thumbnails": ["https://herjeans.com.ar/wp-content/uploads/2022/11/HER-JEANS-BAJA.jpg"]
   }
 ]
