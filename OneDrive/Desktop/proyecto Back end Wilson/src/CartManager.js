@@ -31,4 +31,36 @@ export default class CartManager {
 
     return newCart;
   }
+  async getCartById(cid) {
+    const carts = await this.getCarts();
+    const cart = carts.find(c => c.id == cid);
+    if (!cart) throw new Error("Carrito no encontrado");
+    return cart;
+  }
+
+  async addProductToCart(cid, pid) {
+    const carts = await this.getCarts();
+    const cartIndex = carts.findIndex(c => c.id == cid);
+    if (cartIndex === -1) throw new Error("Carrito no encontrado");
+
+    const cart = carts[cartIndex];
+
+    const existingProduct = cart.products.find(p => p.product == pid);
+
+    if (existingProduct) {
+      existingProduct.quantity += 1;
+    } else {
+      cart.products.push({
+        product: pid,
+        quantity: 1
+      });
+    }
+
+    carts[cartIndex] = cart;
+    await this.saveCarts(carts);
+
+    return cart;
+  }
 }
+
+

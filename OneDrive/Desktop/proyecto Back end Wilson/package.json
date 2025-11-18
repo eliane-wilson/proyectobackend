@@ -1,9 +1,9 @@
 {
   "name": "proyecto-back-end-wilson",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/app.js"
   },
   "keywords": [],
   "author": "",
@@ -11,6 +11,8 @@
   "description": "",
   "type": "module",
   "dependencies": {
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "express-handlebars": "^8.0.3",
+    "socket.io": "^4.8.1"
   }
 }

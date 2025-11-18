@@ -2,7 +2,7 @@ import { Router } from "express";
 import ProductManager from "../ProductManager.js";
 
 const router = Router();
-const productManager = new ProductManager("./src/productos.txt");
+const productManager = new ProductManager("./src/data/productos.json");
 
 router.get("/", async (req, res) => {
   try {
@@ -14,30 +14,45 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.get("/:pid", async (req, res) => {
   try {
-    const { title, description, code, price, status, stock, category, thumbnails } = req.body;
-
-    if (!title || !description || !code || price==null || stock==null || !category) {
-      return res.status(400).json({ message: "Faltan campos obligatorios" });
-    }
-
-    const newProduct = await productManager.addProduct({
-      title,
-      description,
-      code,
-      price,
-      status: status ?? true,
-      stock,
-      category,
-      thumbnails: thumbnails || [],
-    });
-
-    res.status(201).json(newProduct);
+    const { pid } = req.params;
+    const product = await productManager.getProductById(pid);
+    res.json(product);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Error al agregar producto" });
+    res.status(404).json({ message: "Producto no encontrado" });
   }
 });
+
+router.post("/", async (req, res) => {
+  try {
+    const productData = req.body;
+    const newProduct = await productManager.addProduct(productData);
+    res.status(201).json(newProduct);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
+router.put("/:pid", async (req, res) => {
+  try {
+    const { pid } = req.params;
+    const updatedProduct = await productManager.updateProduct(pid, req.body);
+    res.json(updatedProduct);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+});
+
+router.delete("/:pid", async (req, res) => {
+  try {
+    const { pid } = req.params;
+    const deletedProduct = await productManager.deleteProduct(pid);
+    res.json({ message: "Producto eliminado", deletedProduct });
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+});
+
 
 export default router;

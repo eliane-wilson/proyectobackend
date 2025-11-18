@@ -34,30 +34,30 @@
   },
   {
     "id": 4,
-    "code": "HJ5"
+    "code": "HJ5",
     "title": "Pantalón Corto",
     "description": "Pantalón Corto de lino",
     "price": 34.0,
     "stock": 6,
     "status": false,
     "category": "summer",
-    "thumbnails": ["https://img.kwcdn.com/product/Fancyalgo/VirtualModelMatting/070642f4e6b058db5a774300e18d5841.jpg?imageMogr2/auto-orient%7CimageView2/2/w/800/q/70/format/webp"]
+    "thumbnails": ["https://img.kwcdn.com/product/Fancyalgo/VirtualModelMatting/070642f4e6b058db5a774300e18d5841.jpg?imageMogr2/auto-orient|imageView2/2/w/800/q/70/format/webp"]
   },
   {
     "id": 5,
-    "code": "BC2"
+    "code": "BC2",
     "title": "Camisa hombre",
     "description": "Camisa de algodón",
     "price": 25.5,
     "stock": 10,
     "status": true,
     "category": "summer",
-    "thumbnails": ["https://acdn-us.mitiendanube.com/stores/003/795/340/products/orso-29-8_236341-9ac4c533e30252baef17252970645449-1024-1024.webp"] 
+    "thumbnails": ["https://acdn-us.mitiendanube.com/stores/003/795/340/products/orso-29-8_236341-9ac4c533e30252baef17252970645449-1024-1024.webp"]
   },
   {
     "id": 6,
-    "code": "GTD"
-    "title": "Short",
+    "code": "GTD",
+    "title": "Short corto",
     "description": "Short corto",
     "price": 20.0,
     "stock": 5,
