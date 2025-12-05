@@ -1,91 +1,58 @@
-import fs from "fs/promises";
+import { ProductModel } from "./models/products.model.js";
 
 export default class ProductManager {
-  constructor(path , io) {
-    this.path = path;
-    this.io = io;
-    this.products = [];
-  }
-
-  async loadProducts() {
-    try {
-      const data = await fs.readFile(this.path, "utf-8");
-      this.products = data ? JSON.parse(data) : [];
-    } catch {
-      this.products = [];
+  async getProducts({ limit = 10, page = 1, sort, query }) {
+      const filter = {};
+    if (query) {
+        if (query === "available") filter.status = true;
+        else filter.category = query;
     }
-  }
+    const options = {
+      limit,
+      page,
+      sort: sort ? { price: sort === "asc" ? 1 : -1 } : {},
+      lean: true
+    };
+    const result = await ProductModel.paginate(filter, options);
 
-  async saveProducts() {
-    await fs.writeFile(this.path, JSON.stringify(this.products, null, 2));
-  }
-
-  async getProducts() {
-    await this.loadProducts();
-    return this.products;
+    return {
+      status: "success",
+      payload: result.docs,
+      totalPages: result.totalPages,
+      prevPage: result.prevPage,
+      nextPage: result.nextPage,
+      page: result.page,
+      hasPrevPage: result.hasPrevPage,
+      hasNextPage: result.hasNextPage,
+      prevLink: result.hasPrevPage ? `/products?page=${result.prevPage}` : null,
+      nextLink: result.hasNextPage ? `/products?page=${result.nextPage}` : null
+    };
   }
 
   async getProductById(id) {
-    await this.loadProducts();
-    const product = this.products.find(p => p.id == id);
+    const product = await ProductModel.findById(id).lean();
     if (!product) throw new Error("Producto no encontrado");
     return product;
   }
 
-  async addProduct(product) {
-    await this.loadProducts();
+  async addProduct(productData) {
+    const exists = await ProductModel.findOne({ code: productData.code });
+    if (exists) throw new Error("El código del producto ya existe");
 
-    const requiredFields = ["title", "description", "code", "price", "status", "stock", "category"];
-    for (const field of requiredFields) {
-      if (!product[field]) {
-        throw new Error(`El campo ${field} es obligatorio`);
-      }
-    }
-
-    if (this.products.some(p => p.code === product.code)) {
-      throw new Error("El código del producto ya existe");
-    }
-    
-    const id = this.products.length ? this.products[this.products.length - 1].id + 1 : 1;
-    const newProduct = { 
-      id,
-      thumbnails: [],
-      ...product 
-    };
-
-    this.products.push(newProduct);
-    await this.saveProducts();
-
-    io.emit("productsUpdated", this.products);
+    const newProduct = await ProductModel.create(productData);
     return newProduct;
-
-    
   }
 
-    async updateProduct(id, updatedData) {
-    await this.loadProducts();
-    const index = this.products.findIndex(p => p.id == id);
-
-    if (index === -1) throw new Error("Producto no encontrado");
-
-    delete updatedData.id;
-    this.products[index] = { ...this.products[index], ...updatedData };
-    await this.saveProducts();
-
-    return this.products[index];
+  async updateProduct(id, updatedData) {
+    const product = await ProductModel.findByIdAndUpdate(id, updatedData, { new: true });
+    if (!product) throw new Error("Producto no encontrado");
+    return product;
   }
 
-  async deleteProduct(id) {
-    await this.loadProducts();
-    const index = this.products.findIndex(p => p.id == id);
-    if (index === -1) throw new Error("Producto no encontrado");
 
-    const deletedProduct = this.products.splice(index, 1)[0];
-    await this.saveProducts();
-
-    io.emit("productsUpdated", this.products);
-     return deletedProduct;
-
+   async deleteProduct(id) {
+    const deleted = await ProductModel.findByIdAndDelete(id);
+    if (!deleted) throw new Error("Producto no encontrado");
+    return deleted;
   }
 }
-

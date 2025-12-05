@@ -1,6 +1,42 @@
-<h1>Productos en tiempo real</h1>
+<div class="container">
 
-<ul id="productsList"></ul>
+    <h1>Productos en Tiempo Real</h1>
+
+    <section>
+        <h2>Agregar nuevo producto</h2>
+
+        <form id="productForm">
+
+            <input type="text" name="title" placeholder="Título" required>
+
+            <input type="text" name="description" placeholder="Descripción" required>
+
+            <input type="text" name="code" placeholder="Código" required>
+
+            <input type="number" name="price" placeholder="Precio" required>
+
+            <select name="status" required>
+                <option value="" disabled selected>Estado</option>
+                <option value="true">Activo</option>
+                <option value="false">Inactivo</option>
+            </select>
+
+            <input type="number" name="stock" placeholder="Stock" required>
+
+            <input type="text" name="category" placeholder="Categoría" required>
+
+            <button type="submit">Agregar producto</button>
+        </form>
+    </section>
+
+    <hr>
+
+    <section>
+        <h2>Listado de productos</h2>
+        <ul id="productsList"></ul>
+    </section>
+
+</div>
 
 <script src="/socket.io/socket.io.js"></script>
 <script src="/js/realTime.js"></script>

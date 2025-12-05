@@ -1,0 +1,157 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    background-color: #0d0d0d; 
+    color: #f2f2f2;
+}
+
+/* HEADER*/
+
+header {
+    background-color: #1a1a1a;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid fuchsia;
+}
+
+header h1 {
+    margin: 0;
+    color: fuchsia;
+    font-size: 2rem;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px fuchsia;
+}
+
+/* NAVBAR*/
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li a {
+    color: fuchsia;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+nav ul li a:hover {
+    color: white;
+    text-shadow: 0 0 10px fuchsia;
+}
+
+/*  CONTENEDOR PRINCIPAL*/
+
+main {
+    padding: 30px;
+}
+
+h2 {
+    color: fuchsia;
+    border-bottom: 2px solid fuchsia;
+    padding-bottom: 5px;
+    width: fit-content;
+}
+
+/*FORMULARIOS*/
+
+form {
+    background: #111;
+    border: 2px solid fuchsia;
+    padding: 20px;
+    width: 350px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px fuchsia;
+}
+
+form input {
+    width: 100%;
+    background: #222;
+    border: 1px solid fuchsia;
+    padding: 10px;
+    color: white;
+    margin-bottom: 10px;
+    border-radius: 6px;
+}
+
+form button {
+    width: 100%;
+    background: fuchsia;
+    border: none;
+    padding: 12px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+    color: black;
+}
+
+form button:hover {
+    background: white;
+    color: fuchsia;
+}
+
+/* LISTA DE PRODUCTOS*/
+
+#productsList {
+    margin-top: 20px;
+    padding: 0;
+}
+
+#productsList li {
+    list-style: none;
+    background: #1a1a1a;
+    margin-bottom: 10px;
+    padding: 12px;
+    border-left: 5px solid fuchsia;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+#productsList li:hover {
+    background: #222;
+    transform: scale(1.02);
+}
+
+/* FOOTER */
+
+footer {
+    background-color: #1a1a1a;
+    padding: 20px;
+    text-align: center;
+    color: fuchsia;
+    border-top: 3px solid fuchsia;
+    margin-top: 40px;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* RESPONSIVE*/
+
+@media (max-width: 600px) {
+
+    header {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+
+    form {
+        width: 100%;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
