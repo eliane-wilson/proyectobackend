@@ -2,22 +2,21 @@ import { ProductModel } from "../../models/product.model.js";
 
 export default class ProductManagerMongo {
 
-  async getProducts(limit = 10, page = 1, query = {}, sort = null) {
-    const options = {
-      limit,
-      page,
-      lean: true
-    };
-
-    if (sort) {
-      options.sort = { price: sort === "asc" ? 1 : -1 };
+  async getProducts({ limit = 10, page = 1, sort, query } = {}) {
+    const filter = {};
+    if (query) {
+      filter.$or = [
+        { category: query },
+        { status: query.toLowerCase() === "true" ? true : false }
+      ];
     }
 
-    const filter = query.category
-      ? { category: query.category }
-      : query.status
-      ? { status: query.status }
-      : {};
+    const options = {
+      page,
+      limit,
+      sort: sort ? { price: sort === "asc" ? 1 : -1 } : {},
+      lean: true
+    };
 
     return await ProductModel.paginate(filter, options);
   }
@@ -29,26 +28,21 @@ export default class ProductManagerMongo {
   }
 
   async addProduct(productData) {
-    const required = ["title","description","code","price","stock","category"];
-    for (const field of required) {
-      if (!productData[field]) {
-        throw new Error(`El campo ${field} es obligatorio`);
-      }
-    }
-
-    const exists = await ProductModel.findOne({ code: productData.code });
-    if (exists) throw new Error("El código del producto ya existe");
-
+    const existing = await ProductModel.findOne({ code: productData.code });
+    if (existing) throw new Error("El código del producto ya existe");
     const newProduct = await ProductModel.create(productData);
     return newProduct.toObject();
   }
 
-  async updateProduct(id, data) {
-    const updated = await ProductModel.findByIdAndUpdate(id, data, { new: true }).lean();
+  async updateProduct(id, updatedData) {
+    const updated = await ProductModel.findByIdAndUpdate(id, updatedData, { new: true }).lean();
+    if (!updated) throw new Error("Producto no encontrado");
     return updated;
   }
 
   async deleteProduct(id) {
-    return await ProductModel.findByIdAndDelete(id).lean();
+    const deleted = await ProductModel.findByIdAndDelete(id).lean();
+    if (!deleted) throw new Error("Producto no encontrado");
+    return deleted;
   }
 }

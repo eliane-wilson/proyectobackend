@@ -1,16 +1,16 @@
 import { Router } from "express";
-import ProductManager from "../ProductManager.js";
+import ProductManagerMongo from "../dao/mongo/productManager.mongo.js";
 
 const router = Router();
-const productManager = new ProductManager("./src/data/productos.json");
+const productManager = new ProductManagerMongo();
 
 router.get("/", async (req, res) => {
   try {
-    const products = await productManager.getProducts();
-    res.json(products);
+    const { limit, page, sort, query } = req.query;
+    const products = await productManager.getProducts({ limit, page, sort, query });
+    res.json({ status: "success", payload: products });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Error al leer productos" });
+    res.status(500).json({ status: "error", message: error.message });
   }
 });
 
@@ -53,6 +53,5 @@ router.delete("/:pid", async (req, res) => {
     res.status(404).json({ message: error.message });
   }
 });
-
 
 export default router;

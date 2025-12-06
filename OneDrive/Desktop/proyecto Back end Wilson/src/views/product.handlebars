@@ -1,0 +1,15 @@
+{{> header}}
+
+<div class="product-detail">
+    <h1>{{product.title}}</h1>
+    <p>{{product.description}}</p>
+    <p>Precio: ${{product.price}}</p>
+    <p>Stock: {{product.stock}}</p>
+    <p>Categoría: {{product.category}}</p>
+
+    <button id="addToCart" data-id="{{product._id}}">Agregar al carrito</button>
+</div>
+
+<a href="/products">Volver a la lista de productos</a>
+
+<script src="/js/productDetail.js"></script>

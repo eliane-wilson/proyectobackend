@@ -1,4 +1,4 @@
-import { ProductModel } from "./models/products.model.js";
+import { ProductModel } from "./models/product.model.js";
 
 export default class ProductManager {
   async getProducts({ limit = 10, page = 1, sort, query }) {
